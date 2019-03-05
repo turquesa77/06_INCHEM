@@ -1,0 +1,230 @@
+/* Scss Document */
+
+// ============================================
+// Module
+// ============================================
+
+// コンテンツ間のスペース ------------------------------
+	// 原則、スペースは下部に入れる
+	@mixin space {
+		padding: 50px 0 50px;
+		@include media(sp) {
+			padding: 30px 0 30px;
+		}
+	}
+	@mixin space-top {
+		padding-top: 50px;
+		@include media(sp) {
+			padding-top: 30px;
+		}
+	}
+	@mixin space-btm {
+		padding-bottom: 50px;
+		@include media(sp) {
+			padding-bottom: 30px;
+		}
+	}
+	@mixin space-btm2 {
+		padding-bottom: 80px;
+		@include media(sp) {
+			padding-bottom: 50px;
+		}
+	}
+
+// Link ------------------------------
+a {
+	text-decoration: none;
+	color: $color-link;
+	outline: none;
+}
+ // 透過アニメーション
+@mixin hoverOpc {
+	transition: opacity 0.3s ease;
+	&:hover {
+		opacity: 0.5;
+	}
+}
+// 下線アニメーション
+@mixin hoverUnderline {
+	position: relative;
+	display: inline-block;
+	&::after {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 1px;
+		background: $color-main;
+		transform: scale(0, 1);
+		transform-origin: left top;
+		transition: transform .3s;
+	}
+	&:hover::after {
+		transform: scale(1, 1);
+	}
+}
+// 画像ズーム
+@mixin hoverZoom {
+	img {
+		transform: scale(1);
+		transition: .3s ease-in-out;
+	}
+	&:hover img {
+		transform: scale(1.2);
+	}
+}
+
+// リンク無効
+%nolink-base {
+	pointer-events: none;
+	cursor: default;
+}
+.nolink {
+	a {
+		@extend %nolink-base;
+		opacity: 0.5;
+	}
+}
+.nolink-bg {
+	background-color: $color-gy !important;
+	a {
+		@extend %nolink-base;
+	}
+}
+.nolink2 {
+	a {
+		pointer-events: none;
+		cursor: default;
+	}
+}
+
+// Arrow ------------------------------
+@mixin arrow-down {
+	content: "";
+	width: 20px;
+	height: 20px;
+	border: 2px solid;
+	border-color:  transparent transparent $color-main $color-main;
+	transform: rotate(-45deg);
+}
+
+// Title ------------------------------
+
+// Underline
+.title1 {
+	text-align: center;
+	margin-bottom: 30px;
+	&__head {
+		display: inline-block;
+		@include font-size(24);
+		font-weight: 600;
+		color: $color-main;
+		position: relative;
+		padding-left: 10px;
+		padding-right: 10px;
+		box-sizing: border-box;
+		@include media(sp) {
+			@include font-size(20);
+		}
+		&:before{
+			content: "";
+			width: 100%;
+			height: 8px;
+			position: absolute;
+			bottom: 2px;
+			left: 0px;
+			background-color: rgba(#FEA344, 0.7);
+			z-index: -1;
+		}
+	}
+}
+
+// Underline
+.title2 {
+	@include font-size(20); // JP 20px EN 28px
+	//font-family: $font-base-EN-Oswald;
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: 40px;
+	&:after {
+		content: "";
+		display: block;
+		width: 100px;
+		height: 1px;
+		background-color: $color-sub1;
+		margin: 20px auto 0;
+	}
+}
+
+// Background-color
+.title3 {
+	color: white;
+	@include font-size(20);
+	text-align: center;
+	background-color: $color-main;
+	padding: 6px 0;
+}
+
+// Border-left
+.title4 {
+	font-weight: 400;
+	@include font-size(20);
+	border-left: 5px solid $color-sub1;
+	border-bottom: 1px solid $color-sub1;
+	padding-left: 10px;
+}
+
+// title1をアレンジ（フォント大きめ）
+.title-main {
+	text-align: center;
+	@include space;
+	&__head {
+		display: inline-block;
+		@include font-size(34);
+		font-weight: 400;
+		position: relative;
+		padding-left: 10px;
+		padding-right: 10px;
+		box-sizing: border-box;
+		@include media(sp) {
+			@include font-size(28);
+		}
+		&:before{
+			content: "";
+			width: 100%;
+			height: 8px;
+			position: absolute;
+			bottom: 7px;
+			left: 0px;
+			background-color: rgba($color-main, 0.5);
+			z-index: -1;
+			#plant & {
+				background-color: rgba($color-type01, 0.5);
+			}
+			#water & {
+				background-color: rgba($color-type02, 0.5);
+			}
+			#energy & {
+				background-color: rgba($color-type03, 0.5);
+			}
+			#security & {
+				background-color: rgba($color-type04, 0.5);
+			}
+		}
+		&__new {
+			color: $color-red;
+			@include font-size(26);
+			position: absolute;
+			top: -25px;
+			left: -20px;
+			transform: rotate(-15deg);
+		}
+		br {
+			display: none;
+			@include media(sp) {
+				display: inline-block;
+			}
+		}
+	}
+}

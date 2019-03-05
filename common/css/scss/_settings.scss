@@ -1,0 +1,107 @@
+/* Scss Document */
+
+// ============================================
+// サイトの基本設定（変数）
+// ============================================
+
+// 幅関係の設定 ------------------------------
+	$width-base: 1200px; //全体
+	$width-main: 900px; //メインエリアの幅
+	$width-sub: 800px; //サブエリアの幅
+
+// フォント関係の設定 ------------------------------
+	// 日本語
+	@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+	$font-base-JP: "Noto Sans JP", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+	
+	// 英語 Open Sans
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+	$font-base-EN: 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+	// 英語 Oswald
+	//@import url('https://fonts.googleapis.com/css?family=Oswald');
+	//$font-base-EN-Oswald: 'Oswald', 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+
+	@mixin font-size($size, $base: 16) {
+	  font-size: $size + px;
+	  font-size: ($size / $base) + rem;
+	}
+	/* 記述例
+	p {
+	  @include font-size(12);
+	}*/
+
+// 色関係の設定 ------------------------------
+	// サイトカラー
+	$color-main: #343469;
+	$color-sub1: #0D0D1B;
+	$color-sub2: #DEDEF0;
+	$color-type01: #4E5D9D; // plant
+	$color-type02: #008FD4; // water
+	$color-type03: #DE6C27; // energy
+	$color-type04: #009344; // security
+
+	// フォントカラー
+	$color-font: #0D0D1B;
+	// リンクカラー
+	$color-link: #414187;
+	// 背景
+	$color-bg: #F0F9FC;
+	// 他
+	$color-red: #E02634;
+	$color-gy: #cccccc;
+
+// ブレイクポイント ------------------------------
+	$breakpoints: (
+		sp: "screen and (max-width: 768px)",
+		pc: "screen and (min-width: 769px)",
+	);
+	@mixin media($breakpoint) {
+		@media #{map-get($breakpoints, $breakpoint)} {
+			@content;
+		}
+	}
+	/* 記述例
+	@include media(sp) {
+		background-color: green;
+	}*/
+
+// パス ------------------------------
+	$imgDir: "../img/"; //imageディレクトリ
+
+// ============================================
+// Style
+// ============================================
+
+// Common ------------------------------
+html {
+	font-size: 16px;
+}
+body {
+	font-family: $font-base-JP;
+	font-weight: 400;
+	color: $color-font;
+	line-height: 1.5;
+	background: $color-bg;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+// Layout ------------------------------
+*,
+*::after {
+	box-sizing: border-box;
+}
+.l-inner {
+	min-width: 320px;
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}
+
